@@ -8,6 +8,9 @@ namespace TelCoColorCoder
     const char* MinorColorNames[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
     int numberOfMinorColors = std::size(MinorColorNames);
 
+    MajorColor majorColor;
+    MinorColor minorColor;
+
     MajorColor getMajorColor() {
         return majorColor;
     }
@@ -15,6 +18,9 @@ namespace TelCoColorCoder
     MinorColor getMinorColor() {
         return minorColor;
     }
+
+    ColorPair::ColorPair(MajorColor major, MinorColor minor) : majorColor(major), minorColor(minor)
+    {}
 
     ColorPair GetColorFromPairNumber(int pairNumber) {
         int zeroBasedPairNumber = pairNumber - 1;

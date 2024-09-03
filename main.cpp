@@ -8,8 +8,8 @@ void testNumberToPair(int pairNumber,
 {
     TelCoColorCoder::ColorPair colorPair = TelCoColorCoder::GetColorFromPairNumber(pairNumber);
     std::cout << "Got pair " << colorPair.ToString() << std::endl;
-    assert(colorPair.getMajor() == expectedMajor);
-    assert(colorPair.getMinor() == expectedMinor);
+    assert(colorPair.getMajorColor() == expectedMajor);
+    assert(colorPair.getMinorColor() == expectedMinor);
 }
 
 void testPairToNumber(
