@@ -1,54 +1,41 @@
 #include <iostream>
-#include <assert.h>
+#include <cassert>
 #include "ColorPair.h"
 
 /// <summary>
 /// Tests NumberToPair
 /// </summary>
 void testNumberToPair(int pairNumber,
-    TelCoColorCoder::MajorColor expectedMajor,
-    TelCoColorCoder::MinorColor expectedMinor)
+	TelCoColorCoder::MajorColor expectedMajor,
+	TelCoColorCoder::MinorColor expectedMinor)
 {
-    TelCoColorCoder::ColorPair colorPair = TelCoColorCoder::GetColorFromPairNumber(pairNumber);
-    std::cout << "Got pair " << colorPair.ToString() << std::endl;
-    assert(colorPair.getMajorColor() == expectedMajor);
-    assert(colorPair.getMinorColor() == expectedMinor);
+	TelCoColorCoder::ColorPair colorPair = TelCoColorCoder::GetColorFromPairNumber(pairNumber);
+	std::cout << "Got pair " << colorPair.ToString() << '\n';
+	assert(colorPair.getMajorColor() == expectedMajor);
+	assert(colorPair.getMinorColor() == expectedMinor);
 }
 
 /// <summary>
 /// Tests PairToNumber
 /// </summary>
-void testPairToNumber(
-    TelCoColorCoder::MajorColor major,
-    TelCoColorCoder::MinorColor minor,
-    int expectedPairNumber)
+void testPairToNumber(TelCoColorCoder::MajorColor major,
+	TelCoColorCoder::MinorColor minor,
+	int expectedPairNumber)
 {
-    int pairNumber = TelCoColorCoder::GetPairNumberFromColor(major, minor);
-    std::cout << "Got pair number " << pairNumber << std::endl;
-    assert(pairNumber == expectedPairNumber);
+	int pairNumber = TelCoColorCoder::GetPairNumberFromColor(major, minor);
+	std::cout << "Got pair number " << pairNumber << '\n';
+	assert(pairNumber == expectedPairNumber);
 }
 
-/// <summary>
-/// Prints the color pairs
-/// </summary>
-void print()
+int main()
 {
-    std::cout << "PairNumber" << " " << "Major" << " " << "Minor" << std::endl;
-    for (int i = 1; i <= 25; i++) 
-    {
-        TelCoColorCoder::ColorPair colorPair = TelCoColorCoder::GetColorFromPairNumber(i);
-        std::cout << "\t" << i << "\t" << colorPair.ToString() << std::endl;
-    }
-}
+	testNumberToPair(4, TelCoColorCoder::MajorColor::WHITE, TelCoColorCoder::MinorColor::BROWN);
+	testNumberToPair(5, TelCoColorCoder::MajorColor::WHITE, TelCoColorCoder::MinorColor::SLATE);
 
-int main() {
-    testNumberToPair(4, TelCoColorCoder::MajorColor::WHITE, TelCoColorCoder::MinorColor::BROWN);
-    testNumberToPair(5, TelCoColorCoder::MajorColor::WHITE, TelCoColorCoder::MinorColor::SLATE);
+	testPairToNumber(TelCoColorCoder::MajorColor::BLACK, TelCoColorCoder::MinorColor::ORANGE, 12);
+	testPairToNumber(TelCoColorCoder::MajorColor::VIOLET, TelCoColorCoder::MinorColor::SLATE, 25);
 
-    testPairToNumber(TelCoColorCoder::MajorColor::BLACK, TelCoColorCoder::MinorColor::ORANGE, 12);
-    testPairToNumber(TelCoColorCoder::MajorColor::VIOLET, TelCoColorCoder::MinorColor::SLATE, 25);
+	TelCoColorCoder::ColorPair::PrintReferenceManual();
 
-    print();
-
-    return 0;
+	return 0;
 }
